@@ -37,7 +37,7 @@ Plug 'altercation/vim-colors-solarized'
 " fugitive.vim may very well be the best Git wrapper of all time.
 " https://vimawesome.com/plugin/fugitive-vim
 
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive', { 'tag' : 'dd4d4c75959767b591852091bb73b7c7a85a02e2' }
 
 " VIM-Airline
 " Lean & mean status/tabline for vim that's light as air.
@@ -556,8 +556,8 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 " themes
-set cursorcolumn " highlight current column
-hi CursorColumn cterm=None ctermbg=lightgray ctermfg=black
+" set cursorcolumn " highlight current column
+" hi CursorColumn cterm=None ctermbg=lightgray ctermfg=black
 
 set cursorline " highlight current line
 hi CursorLine cterm=None ctermbg=lightgray ctermfg=Red
@@ -651,8 +651,7 @@ let g:ctrlp_working_path_mode = "ra"
 set wildignore+=*/node_modules/*,*.so,*.swp,*.zip,*.png,*.gif,*.jpg,*.jpeg
 
 " configuration for utilsnips
-"let g:UltiSnipsSnippetDirectories=["plugged/x-vim-snippets"]
-let g:UltiSnipsSnippetDirectories=["/Users/NextSeason/workspace/projects/others/x-vim-snippets/"]
+let g:UltiSnipsSnippetDirectories=["plugged/x-vim-snippets"]
 
 " configuration for undo-tree
 nmap <C-D> :UndotreeToggle<CR>
