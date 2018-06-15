@@ -249,6 +249,9 @@ set infercase
 " When searching try to be smart about cases 
 set smartcase
 
+" Highlight matched parenthesses
+hi MatchParen cterm=none ctermbg=green ctermfg=yellow
+
 " Highlight search results
 set hlsearch
 
@@ -651,7 +654,8 @@ let g:ctrlp_working_path_mode = "ra"
 set wildignore+=*/node_modules/*,*.so,*.swp,*.zip,*.png,*.gif,*.jpg,*.jpeg
 
 " configuration for utilsnips
-let g:UltiSnipsSnippetDirectories=["plugged/x-vim-snippets"]
+"let g:UltiSnipsSnippetDirectories=["plugged/x-vim-snippets"]
+let g:UltiSnipsSnippetDirectories=["/Users/NextSeason/workspace/projects/others/x-vim-snippets/"]
 
 " configuration for undo-tree
 nmap <C-D> :UndotreeToggle<CR>
