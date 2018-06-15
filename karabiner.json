@@ -41,40 +41,15 @@
                         ]
                     },
                     {
-                        "description": "Post delete if right_shift is pressed alone.",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "right_shift",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_shift"
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "delete_or_backspace"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Post down arrow if press control+j.",
+                        "description": "Post down arrow if press control+command+j.",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
                                         "mandatory": [
-                                            "control"
+                                            "control",
+                                            "command"
                                         ]
                                     }
                                 },
@@ -88,14 +63,15 @@
                         ]
                     },
                     {
-                        "description": "Post up arrow if press control+k",
+                        "description": "Post up arrow if press control+command+k",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
                                         "mandatory": [
-                                            "control"
+                                            "control",
+                                            "command"
                                         ]
                                     }
                                 },
