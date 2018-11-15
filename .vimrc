@@ -139,6 +139,14 @@ Plug 'arcticicestudio/nord-vim'
 
 " Plug 'pangloss/vim-javascript'
 
+" A vim plugin for Flow
+" https://github.com/flowtype/vim-flow
+" Plug 'flowtype/vim-flow'
+
+" Swift
+" https://github.com/keith/swift.vim
+Plug 'keith/swift.vim'
+
 call plug#end()
 
 
@@ -429,9 +437,9 @@ endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
-  exe "normal mz"
+  "exe "normal mz"
   %s/\s\+$//ge
-  exe "normal `z"
+  "exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
@@ -580,11 +588,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_typescript_checkers = ['tslint']
+" let g:syntastic_javascript_flow_exe = 'flow'
 
 "let g:syntastic_php_checkers = ['']
 let g:syntastic_php_php_exec = '/Users/NextSeason/services/php/bin/php'
 let g:syntastic_html_tidy_ignore_errors = [ '<template> is not recognized!', '<summary> is not recognized!', '<view> is not recognized!', '<svg> is not recognized!', '<circle> is not recognized' ]
-let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
+let g:syntastic_html_tidy_quiet_messages = { "level" : "errors" }
 
 augroup filetype
     autocmd! BufRead,BufNewFile *.wxml set filetype=html
@@ -594,19 +604,26 @@ augroup filetype
     autocmd! BufRead,BufNewFile *.mjs set filetype=javascript
 augroup END
 
+augroup filetype
+    autocmd! BufRead,BufNewFile *.ts set filetype=typescript
+augroup END
+
 " configuration for tagbar
 
 let g:tagbar_type_javascript = {
     \ 'ctags_type' : 'JavaScript',
     \ 'kinds' : [
       \  'C:Classes',
+      \  'I:Imports',
+      \  'Q:Requires',
       \  'M:Methods',
-      \  'A:Arrays',
+      \  '_:Getters',
+      \  '$:Setters',
       \  'E:Exports',
       \  'F:Functions',
       \  'G:Generators',
-      \  'I:Imports',
       \  'P:Properties',
+      \  'A:Arrays',
       \  'O:Objects',
       \  'T:Tags',
       \  'V:Variables',
@@ -668,6 +685,12 @@ let g:webdevicons_enable_airline_statusline = 1
 let g:webdevicons_enable_ctrlp = 1
 
 " configuration for vim-javascript
-set conceallevel=1
-let g:javascript_conceal_function = "ƒ"
-let g:javascript_plugin_jsdoc = 1
+" let g:javascript_conceal_function = "ƒ"
+" let g:javascript_plugin_jsdoc = 1
+set conceallevel=2
+set cole=2
+
+" flowtype
+" let g:flow#autoclose = 1
+" turn off the omni completion
+" let g:flow#omnifunc = 0
