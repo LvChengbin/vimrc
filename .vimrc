@@ -115,7 +115,7 @@ Plug 'lvchengbin/x-vim-snippets'
 " Undo Tree
 " undo-tree
 " https://vimawesome.com/plugin/undotree-vim
-Plug 'mbbill/undotree'
+" Plug 'mbbill/undotree'
 
 " Vim Devicons
 " Devicons, supports plugins such as NERDTree, vim-airline, CtrlP, powerline, denite, unite, lightline.vim, vim-startify, vimfiler, vim-workspace and flagship. This plugin should always be loaded after other plugins.
@@ -146,6 +146,10 @@ Plug 'arcticicestudio/nord-vim'
 " Swift
 " https://github.com/keith/swift.vim
 Plug 'keith/swift.vim'
+
+" Tools to make Vim superb for developing with Node.js.
+" https://github.com/moll/vim-node
+Plug 'moll/vim-node'
 
 call plug#end()
 
@@ -592,7 +596,6 @@ let g:syntastic_typescript_checkers = ['tslint']
 " let g:syntastic_javascript_flow_exe = 'flow'
 
 "let g:syntastic_php_checkers = ['']
-let g:syntastic_php_php_exec = '/Users/NextSeason/services/php/bin/php'
 let g:syntastic_html_tidy_ignore_errors = [ '<template> is not recognized!', '<summary> is not recognized!', '<view> is not recognized!', '<svg> is not recognized!', '<circle> is not recognized' ]
 let g:syntastic_html_tidy_quiet_messages = { "level" : "errors" }
 
@@ -671,11 +674,10 @@ let g:ctrlp_working_path_mode = "ra"
 set wildignore+=*/node_modules/*,*.so,*.swp,*.zip,*.png,*.gif,*.jpg,*.jpeg
 
 " configuration for utilsnips
-"let g:UltiSnipsSnippetDirectories=["plugged/x-vim-snippets"]
-let g:UltiSnipsSnippetDirectories=["/Users/NextSeason/workspace/projects/others/x-vim-snippets/"]
+let g:UltiSnipsSnippetDirectories=["plugged/x-vim-snippets"]
 
 " configuration for undo-tree
-nmap <C-D> :UndotreeToggle<CR>
+" nmap <C-D> :UndotreeToggle<CR>
 
 "configuration for devicons
 let g:webdevicons_enable = 1
