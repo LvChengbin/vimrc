@@ -151,6 +151,13 @@ Plug 'keith/swift.vim'
 " https://github.com/moll/vim-node
 Plug 'moll/vim-node'
 
+" Editing large files can be a time consuming process as Vim is working on a number of things behind the scenes
+" https://github.com/vim-scripts/LargeFile
+Plug 'vim-scripts/LargeFile'
+
+" https://github.com/niftylettuce/vim-jinja
+Plug 'lepture/vim-jinja'
+
 call plug#end()
 
 
@@ -592,6 +599,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_stylus_checkers = ['stylint']
 let g:syntastic_typescript_checkers = ['tslint']
 " let g:syntastic_javascript_flow_exe = 'flow'
 
@@ -601,6 +609,7 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "errors" }
 
 augroup filetype
     autocmd! BufRead,BufNewFile *.wxml set filetype=html
+    au BufRead,BufNewFile *.html set ft=jinja
 augroup END
 
 augroup filetype
@@ -689,25 +698,23 @@ let g:webdevicons_enable_ctrlp = 1
 " configuration for vim-javascript
 " let g:javascript_conceal_function = "ƒ"
 " let g:javascript_plugin_jsdoc = 1
-set conceallevel=2
-set cole=2
+" set conceallevel=2
+" set cole=2
 
 " flowtype
 " let g:flow#autoclose = 1
 " turn off the omni completion
 " let g:flow#omnifunc = 0
 
-autocmd BufNewFile *.js,*.php exec ":call SetHeadComment()"
+autocmd BufNewFile *.js,*.php,*.py exec ":call SetHeadComment()"
 func SetHeadComment()
 	call setline(1, "/******************************************************************")
 	call setline(2, " * Copyright (C) ".strftime("%Y")." LvChengbin")
 	call setline(3, " * ")
-	call setline(4, " * File：".expand("%:t"))
-	call setline(5, " * Author ：LvChengbin<lvchengbin59@gmail.com>")
-	call setline(6, " * Time ：".strftime("%m/%d/%Y"))
-	call setline(7, " * Description ：")
+	call setline(4, " * File: ".expand("%:t"))
+	call setline(5, " * Author: LvChengbin<lvchengbin59@gmail.com>")
+	call setline(6, " * Time: ".strftime("%m/%d/%Y"))
+	call setline(7, " * Description: ")
 	call setline(8, " ******************************************************************/")
 	call setline(9, "")
 endfunc
-
-map <C-H> :call SetHeadComment()<CR>
