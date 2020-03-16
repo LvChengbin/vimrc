@@ -137,11 +137,10 @@ Plug 'ap/vim-css-color'
 " https://vimawesome.com/plugin/nord-vim
 Plug 'arcticicestudio/nord-vim'
 
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 
-" A vim plugin for Flow
-" https://github.com/flowtype/vim-flow
-" Plug 'flowtype/vim-flow'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 " Swift
 " https://github.com/keith/swift.vim
@@ -150,6 +149,8 @@ Plug 'keith/swift.vim'
 " Tools to make Vim superb for developing with Node.js.
 " https://github.com/moll/vim-node
 Plug 'moll/vim-node'
+
+Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -581,6 +582,21 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline_theme = 'ubaryd'
 
+augroup filetype
+    autocmd! BufRead,BufNewFile *.wxml set filetype=html
+    autocmd! BufRead,BufNewFile *.njk set filetype=html
+augroup END
+
+augroup filetype
+    autocmd! BufRead,BufNewFile *.mjs set filetype=javascript
+    autocmd! BufRead,BufNewFile *.jsx set filetype=javascript
+augroup END
+
+augroup filetype
+    autocmd! BufRead,BufNewFile *.ts set filetype=typescript
+    autocmd! BufRead,BufNewFile *.tsx set filetype=typescript
+augroup END
+
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -592,10 +608,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['tslint']
-" let g:syntastic_javascript_flow_exe = 'flow'
+let g:syntastic_typescript_checkers = ['eslint']
+let g:syntastic_html_checkers = []
 
 "let g:syntastic_php_checkers = ['']
+let g:syntastic_stylus_checkers = ['']
+let g:syntastic_php_php_exec = '/Users/NextSeason/services/php/bin/php'
 let g:syntastic_html_tidy_ignore_errors = [ '<template> is not recognized!', '<summary> is not recognized!', '<view> is not recognized!', '<svg> is not recognized!', '<circle> is not recognized' ]
 let g:syntastic_html_tidy_quiet_messages = { "level" : "errors" }
 
@@ -689,10 +707,23 @@ let g:webdevicons_enable_ctrlp = 1
 " configuration for vim-javascript
 " let g:javascript_conceal_function = "ƒ"
 " let g:javascript_plugin_jsdoc = 1
-set conceallevel=2
-set cole=2
+" set conceallevel=2
+" set cole=2
 
 " flowtype
 " let g:flow#autoclose = 1
 " turn off the omni completion
 " let g:flow#omnifunc = 0
+"
+autocmd BufNewFile *.js,*.php exec ":call SetHeadComment()"
+func SetHeadComment()
+    call setline(1, "/******************************************************************")
+    call setline(2, " * Copyright (C) ".strftime("%Y")." LvChengbin")
+    call setline(3, " * ")
+    call setline(4, " * File: ".expand("%:p:h:t")."/".expand("%:t"))
+    call setline(5, " * Author: LvChengbin<lvchengbin59@gmail.com>")
+    call setline(6, " * Time: ".strftime("%m/%d/%Y"))
+    call setline(7, " * Description: ")
+    call setline(8, " ******************************************************************/")
+    call setline(9, "")
+endfunc
