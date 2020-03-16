@@ -619,6 +619,7 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "errors" }
 
 augroup filetype
     autocmd! BufRead,BufNewFile *.wxml set filetype=html
+    au BufRead,BufNewFile *.html set ft=jinja
 augroup END
 
 augroup filetype
@@ -719,11 +720,11 @@ autocmd BufNewFile *.js,*.php exec ":call SetHeadComment()"
 func SetHeadComment()
     call setline(1, "/******************************************************************")
     call setline(2, " * Copyright (C) ".strftime("%Y")." LvChengbin")
-    call setline(3, " * ")
+    call setline(3, " *")
     call setline(4, " * File: ".expand("%:p:h:t")."/".expand("%:t"))
     call setline(5, " * Author: LvChengbin<lvchengbin59@gmail.com>")
     call setline(6, " * Time: ".strftime("%m/%d/%Y"))
-    call setline(7, " * Description: ")
+    call setline(7, " * Description:")
     call setline(8, " ******************************************************************/")
     call setline(9, "")
 endfunc
