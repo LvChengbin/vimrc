@@ -63,12 +63,6 @@ Plug 'majutsushi/tagbar'
 
 " Plug 'svermeulen/vim-easyclip'
 
-" NERDCommenter
-" Comment functions so powerful—no comment necessary.
-" https://vimawesome.com/plugin/the-nerd-commenter
-
-Plug 'scrooloose/nerdcommenter'
-
 
 " You Complete Me
 " YouCompleteMe is a fast, as-you-type, fuzzy-search code completion engine for Vim
@@ -152,6 +146,11 @@ Plug 'moll/vim-node'
 
 Plug 'posva/vim-vue'
 
+Plug 'tpope/vim-commentary'
+
+" remote it cuz of bad performance
+" Plug 'tpope/vim-speeddating'
+
 call plug#end()
 
 
@@ -201,8 +200,8 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+" let mapleader = "\"
+" let g:mapleader = "\"
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -590,6 +589,7 @@ augroup END
 augroup filetype
     autocmd! BufRead,BufNewFile *.mjs set filetype=javascript
     autocmd! BufRead,BufNewFile *.jsx set filetype=javascript
+    autocmd! BufRead,BufNewFile *.t set filetype=javascript
 augroup END
 
 augroup filetype
@@ -619,7 +619,6 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "errors" }
 
 augroup filetype
     autocmd! BufRead,BufNewFile *.wxml set filetype=html
-    au BufRead,BufNewFile *.html set ft=jinja
 augroup END
 
 augroup filetype
@@ -715,16 +714,16 @@ let g:webdevicons_enable_ctrlp = 1
 " let g:flow#autoclose = 1
 " turn off the omni completion
 " let g:flow#omnifunc = 0
-"
+
 autocmd BufNewFile *.js,*.php exec ":call SetHeadComment()"
 func SetHeadComment()
     call setline(1, "/******************************************************************")
     call setline(2, " * Copyright (C) ".strftime("%Y")." LvChengbin")
-    call setline(3, " *")
+    call setline(3, " * ")
     call setline(4, " * File: ".expand("%:p:h:t")."/".expand("%:t"))
     call setline(5, " * Author: LvChengbin<lvchengbin59@gmail.com>")
     call setline(6, " * Time: ".strftime("%m/%d/%Y"))
-    call setline(7, " * Description:")
+    call setline(7, " * Description: ")
     call setline(8, " ******************************************************************/")
     call setline(9, "")
 endfunc
