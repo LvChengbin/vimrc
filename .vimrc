@@ -12,7 +12,6 @@ Plug 'scrooloose/nerdtree'
 " Syntastic
 " Syntastic is a syntax checking plugin for Vim created by Martin Grenfell. It runs files through external syntax checkers and displays any resulting errors to the user. This can be done on demand, or automatically as files are saved. If syntax errors are detected, the user is notified and is happy because they didn't have to compile their code or execute their script to find them.
 " https://vimawesome.com/plugin/syntastic#introduction
-
 Plug 'scrooloose/syntastic'
 
 " Surround
@@ -608,7 +607,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'xeslint' 
 let g:syntastic_typescript_checkers = ['eslint']
+let g:syntastic_typescript_eslint_exec = 'xeslint' 
 let g:syntastic_html_checkers = []
 
 "let g:syntastic_php_checkers = ['']
@@ -693,6 +694,7 @@ set wildignore+=*/node_modules/*,*.so,*.swp,*.zip,*.png,*.gif,*.jpg,*.jpeg
 
 " configuration for utilsnips
 let g:UltiSnipsSnippetDirectories=["plugged/x-vim-snippets"]
+"let g:UltiSnipsSnippetDirectories=["/Users/NextSeason/workspace/projects/others/x-vim-snippets/"]
 
 " configuration for undo-tree
 " nmap <C-D> :UndotreeToggle<CR>
@@ -716,7 +718,7 @@ let g:webdevicons_enable_ctrlp = 1
 " let g:flow#omnifunc = 0
 
 autocmd BufNewFile *.js,*.php exec ":call SetHeadComment()"
-func SetHeadComment()
+func! SetHeadComment()
     call setline(1, "/******************************************************************")
     call setline(2, " * Copyright (C) ".strftime("%Y")." LvChengbin")
     call setline(3, " * ")
