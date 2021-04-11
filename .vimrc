@@ -12,42 +12,41 @@ Plug 'scrooloose/nerdtree'
 " Syntastic
 " Syntastic is a syntax checking plugin for Vim created by Martin Grenfell. It runs files through external syntax checkers and displays any resulting errors to the user. This can be done on demand, or automatically as files are saved. If syntax errors are detected, the user is notified and is happy because they didn't have to compile their code or execute their script to find them.
 " https://vimawesome.com/plugin/syntastic#introduction
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'lvchengbin/syntastic'
 
 " Surround
 " Surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.
 " https://vimawesome.com/plugin/surround-vim
+" Plug 'tpope/vim-surround'
 
-Plug 'tpope/vim-surround'
-
+" local-vimrc
+" Loading local .vimrc file from project directory.
+" https://github.com/LvChengbin/local-vimrc
+Plug 'lvchengbin/local-vimrc'
 
 " CTRLP
 " https://vimawesome.com/plugin/ctrlp-vim-red
-
 Plug 'kien/ctrlp.vim'
 
 " Solarized
 "
 " https://vimawesome.com/plugin/vim-colors-solarized-ours
-
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 
 " fugitive
 " fugitive.vim may very well be the best Git wrapper of all time.
 " https://vimawesome.com/plugin/fugitive-vim
-
 Plug 'tpope/vim-fugitive', { 'tag' : 'dd4d4c75959767b591852091bb73b7c7a85a02e2' }
 
 " VIM-Airline
 " Lean & mean status/tabline for vim that's light as air.
 " https://vimawesome.com/plugin/vim-airline
-
 Plug 'bling/vim-airline'
 
 " vim-airline-theme
 " This is the official theme repository for vim-airline
 " https://vimawesome.com/plugin/vim-airline-themes
-
 Plug 'vim-airline/vim-airline-themes'
 
 " TAGBAR
@@ -72,13 +71,12 @@ Plug 'majutsushi/tagbar'
 " EasyMotion
 " EasyMotion provides a much simpler way to use some motions in vim. It takes the <number> out of <number>w or <number>f{char} by highlighting all possible choices and allowing you to press one key to jump directly to the target.
 " https://vimawesome.com/plugin/easymotion
-
 Plug 'easymotion/vim-easymotion'
 
 " VimStylus
 " Syntax highlight of Stylus
 " https://github.com/wavded/vim-stylus
-Plug 'git://github.com/wavded/vim-stylus.git'
+" Plug 'git://github.com/wavded/vim-stylus.git'
 
 " Vim Markdown Toc
 " Generate table of contents for markdown files.
@@ -88,7 +86,7 @@ Plug 'mzlogin/vim-markdown-toc'
 " Vim Latex
 " Provides a rich tool of features for editing latex files.
 " https://vimawesome.com/plugin/vim-latex-mine
-Plug 'vim-latex/vim-latex'
+" Plug 'vim-latex/vim-latex'
 
 " Ultisnips
 " UltiSnips is the ultimate solution for snippets in Vim. It has tons of features and is very fast.
@@ -133,7 +131,28 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'pangloss/vim-javascript'
 
 Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+" Plug 'peitalin/vim-jsx-typescript'
+
+" Plug 'Quramy/tsuquyomi'
+
+" https://github.com/mhartington/nvim-typescript
+" Plug 'mhartington/nvim-typescript', { 'do' : './install.sh' }
+
+" https://github.com/Shougo/deoplete.nvim
+" if has( 'nvim' )
+"     Plug 'Shougo/deoplete.nvim', { 'do' : ':UpdateRemotePlugins' }
+" else
+"     Plug 'Shougo/deoplete.nvim'
+"     Plug 'roxma/nvim-yarp'
+"     Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+
+" if has('nvim')
+"     Plug 'Shougo/denite.nvim', { 'do' : ':UpdateRemotePlugins' }
+" else
+"     Plug 'roxma/nvim-yarp'
+"     Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 " Swift
 " https://github.com/keith/swift.vim
@@ -143,12 +162,27 @@ Plug 'keith/swift.vim'
 " https://github.com/moll/vim-node
 Plug 'moll/vim-node'
 
-Plug 'posva/vim-vue'
+" Plug 'posva/vim-vue'
 
 Plug 'tpope/vim-commentary'
 
 " remote it cuz of bad performance
 " Plug 'tpope/vim-speeddating'
+
+" This is an EditorConfig plugin for Vim. 
+" https://github.com/editorconfig/editorconfig-vim#readme
+" Plug 'editorconfig/editorconfig-vim'
+
+" Color scheme
+" https://github.com/ayu-theme/ayu-vim
+Plug 'ayu-theme/ayu-vim'
+
+" This plugin is used for displaying thin vertical lines at each indentation level for code indented with spaces. For code indented with tabs I think there is no need to support it, because you can use :set list lcs=tab:\|\ (here is a space).
+" https://github.com/Yggdroot/indentLine
+" Plug 'Yggdroot/indentLine'
+
+" https://github.com/jacoborus/tender.vim
+Plug 'jacoborus/tender.vim'
 
 call plug#end()
 
@@ -164,11 +198,18 @@ syntax enable
 " set background=dark
 
 try
-    "colorscheme desert
+    " set t_Co=256
+    set termguicolors
+    " colorscheme desert
     "colorscheme molokai
     "let g:molokai_original = 1
     "colorscheme solarized
-    "colorscheme nord
+    " colorscheme nord
+    " let ayucolor="light"
+    let ayucolor="mirage"
+    " let ayucolor="dark"
+    colorscheme ayu 
+    hi Normal guibg=NONE ctermbg=NONE
     "let g:solarized_termcolors=256
 catch
 endtry
@@ -192,7 +233,7 @@ setlocal foldmethod=syntax
 
 " Enable filetype plugins
 filetype plugin on
-filetype indent on
+" filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -507,8 +548,6 @@ map <leader>x :e ~/buffer.md<cr>
 map <leader>pp :setlocal paste!<cr>
 
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -539,6 +578,8 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
+" stop using CTRL+J & CTRL+K to swap adjacent lines
+" inoremap <c-k> <up>
 
 " Returns true if paste mode is enabled
 function! HasPaste()
@@ -578,7 +619,7 @@ hi CursorLine cterm=None ctermbg=lightgray ctermfg=Red
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
-let g:airline_theme = 'ubaryd'
+let g:airline_theme = 'tender'
 
 augroup filetype
     autocmd! BufRead,BufNewFile *.wxml set filetype=html
@@ -596,6 +637,9 @@ augroup filetype
     autocmd! BufRead,BufNewFile *.tsx set filetype=typescript
 augroup END
 
+" configuration for Quramy/tsuquyomi
+" autocmd FileType typescript setlocal completeopt+=menu,preview
+" let g:tsuquyoim_completion_detail = 1
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -607,7 +651,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'xeslint' 
+" let g:syntastic_javascript_eslint_exec = 'xeslint' 
+" let g:syntastic_javascript_eslint_generic = 1
 let g:syntastic_typescript_checkers = ['eslint']
 let g:syntastic_typescript_eslint_exec = 'xeslint' 
 let g:syntastic_html_checkers = []
@@ -617,18 +662,6 @@ let g:syntastic_stylus_checkers = ['']
 let g:syntastic_php_php_exec = '/Users/NextSeason/services/php/bin/php'
 let g:syntastic_html_tidy_ignore_errors = [ '<template> is not recognized!', '<summary> is not recognized!', '<view> is not recognized!', '<svg> is not recognized!', '<circle> is not recognized' ]
 let g:syntastic_html_tidy_quiet_messages = { "level" : "errors" }
-
-augroup filetype
-    autocmd! BufRead,BufNewFile *.wxml set filetype=html
-augroup END
-
-augroup filetype
-    autocmd! BufRead,BufNewFile *.mjs set filetype=javascript
-augroup END
-
-augroup filetype
-    autocmd! BufRead,BufNewFile *.ts set filetype=typescript
-augroup END
 
 " configuration for tagbar
 
@@ -693,8 +726,8 @@ let g:ctrlp_working_path_mode = "ra"
 set wildignore+=*/node_modules/*,*.so,*.swp,*.zip,*.png,*.gif,*.jpg,*.jpeg
 
 " configuration for utilsnips
-let g:UltiSnipsSnippetDirectories=["plugged/x-vim-snippets"]
-"let g:UltiSnipsSnippetDirectories=["/Users/NextSeason/workspace/projects/others/x-vim-snippets/"]
+" let g:UltiSnipsSnippetDirectories=["plugged/x-vim-snippets"]
+let g:UltiSnipsSnippetDirectories=["/Users/NextSeason/workspace/projects/x-vim-snippets/"]
 
 " configuration for undo-tree
 " nmap <C-D> :UndotreeToggle<CR>
@@ -707,25 +740,59 @@ let g:webdevicons_enable_airline_statusline = 1
 let g:webdevicons_enable_ctrlp = 1
 
 " configuration for vim-javascript
-" let g:javascript_conceal_function = "ƒ"
-" let g:javascript_plugin_jsdoc = 1
-" set conceallevel=2
+" set conceallevel=1
 " set cole=2
+" let g:javascript_conceal_function = "ƒ"
+" let g:javascript_conceal_arrow_function = '⇒'
+" let g:javascript_plugin_jsdoc = 1
 
 " flowtype
 " let g:flow#autoclose = 1
 " turn off the omni completion
 " let g:flow#omnifunc = 0
 
+" let g:nvim_typescript#server_cmd = 'yarn'
+" let g:nvim_typescript#server_options = [ 'tsserver' ]
+" let g:nvim_typescript#server_version = ''
+" let g:nvim_typescript#diagnostics_enable = 0
+" autocmd BufWrite *.ts,*.tsx TSGetDiagnostics
+
+" configuration for Shougo/deoplete
+" set completeopt-=preview
+" let g:deoplete#enable_at_startup = 1
+" call deoplete#custom#option( 'num_processes', 4 )
+
 autocmd BufNewFile *.js,*.php exec ":call SetHeadComment()"
 func! SetHeadComment()
-    call setline(1, "/******************************************************************")
-    call setline(2, " * Copyright (C) ".strftime("%Y")." LvChengbin")
-    call setline(3, " * ")
-    call setline(4, " * File: ".expand("%:p:h:t")."/".expand("%:t"))
-    call setline(5, " * Author: LvChengbin<lvchengbin59@gmail.com>")
-    call setline(6, " * Time: ".strftime("%m/%d/%Y"))
-    call setline(7, " * Description: ")
-    call setline(8, " ******************************************************************/")
-    call setline(9, "")
+    if &filetype ==# 'lua'
+        call setline(1, "-------------------------------------------------------------------")
+        call setline(2, " -- Copyright (C) ".strftime("%Y")." LvChengbin")
+        call setline(3, " --")
+        call setline(4, " -- File: ".expand("%:p:h:t")."/".expand("%:t"))
+        call setline(5, " -- Author: LvChengbin<lvchengbin59@gmail.com>")
+        call setline(6, " -- Time: ".strftime("%m/%d/%Y"))
+        call setline(7, " -- Description:")
+        call setline(8, "--------------------------------------------------------------------")
+        call setline(9, "")
+    elseif &filetype ==# 'html'
+        call setline(1, "<!-- ---------------------------------------------------------------") 
+        call setline(2, " Copyright (C) ".strftime("%Y")." LvChengbin")
+        call setline(3, "")
+        call setline(4, " File: ".expand("%:p:h:t")."/".expand("%:t"))
+        call setline(5, " Author: LvChengbin<lvchengbin59@gmail.com>")
+        call setline(6, " Time: ".strftime("%m/%d/%Y"))
+        call setline(7, " Description:")
+        call setline(8, "---------------------------------------------------------------- -->")
+        call setline(9, "")
+    else
+        call setline(1, "/******************************************************************")
+        call setline(2, " * Copyright (C) ".strftime("%Y")." LvChengbin")
+        call setline(3, " *")
+        call setline(4, " * File: ".expand("%:p:h:t")."/".expand("%:t"))
+        call setline(5, " * Author: LvChengbin<lvchengbin59@gmail.com>")
+        call setline(6, " * Time: ".strftime("%m/%d/%Y"))
+        call setline(7, " * Description:")
+        call setline(8, " ******************************************************************/")
+        call setline(9, "")
+    endif
 endfunc
